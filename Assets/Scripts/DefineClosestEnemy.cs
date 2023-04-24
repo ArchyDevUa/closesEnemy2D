@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DefineClosestEnemy : MonoBehaviour
@@ -24,7 +25,11 @@ public class DefineClosestEnemy : MonoBehaviour
             enemy.GetComponent<Renderer>().material.color = new Color(238, 55, 0);
         }
         closestEnemy =  getCloseEnemy();
-        closestEnemy.GetComponent<Renderer>().material.color = new Color(255,0,0);
+        if (closestEnemy != null)
+        {
+            closestEnemy.GetComponent<Renderer>().material.color = new Color(255,0,0);
+        }
+        
         
         //move section
         if (Input.GetKeyDown("space"))
@@ -62,4 +67,6 @@ public class DefineClosestEnemy : MonoBehaviour
         }
         return trans;
     }
+
+    
 }
