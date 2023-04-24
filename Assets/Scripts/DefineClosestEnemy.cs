@@ -6,7 +6,9 @@ using UnityEngine;
 public class DefineClosestEnemy : MonoBehaviour
 {
     private GameObject[] multipleEnemys;
-    [SerializeField]private GameObject closestEnemy;
+    [SerializeField]private Transform closestEnemy;
+    [SerializeField] private MoveToChoosenEnemy script;
+    [SerializeField] private bool allowedToAutomove = false;
     void Start()
     {
         closestEnemy = null;
@@ -15,6 +17,7 @@ public class DefineClosestEnemy : MonoBehaviour
     
     void Update()
     { 
+        //change color setion
         multipleEnemys = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in multipleEnemys)
         {
@@ -22,14 +25,30 @@ public class DefineClosestEnemy : MonoBehaviour
         }
         closestEnemy =  getCloseEnemy();
         closestEnemy.GetComponent<Renderer>().material.color = new Color(255,0,0);
+        
+        //move section
+        if (Input.GetKeyDown("space"))
+        {
+            allowedToAutomove = !allowedToAutomove;
+        }
+
+        if (allowedToAutomove)
+        {
+            script.SetTarget(closestEnemy);
+        }
+        else
+        {
+            script.SetTarget(null);
+        }
+        
     }
 
-    private GameObject getCloseEnemy()
+    public Transform getCloseEnemy()
     {
         
         
         float closetDistance = Mathf.Infinity;
-        GameObject trans = null;
+        Transform trans = null;
 
         foreach (GameObject enemy in multipleEnemys)
         {
@@ -38,7 +57,7 @@ public class DefineClosestEnemy : MonoBehaviour
             if (currentDistance < closetDistance)
             {
                 closetDistance = currentDistance;
-                trans = enemy;
+                trans = enemy.transform;
             }
         }
         return trans;

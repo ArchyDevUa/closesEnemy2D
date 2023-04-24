@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
+  script: {fileID: 1122729719}
+  allowedToAutomove: 0
 --- !u!1 &1122729714
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +266,7 @@ GameObject:
   - component: {fileID: 1122729716}
   - component: {fileID: 1122729715}
   - component: {fileID: 1122729718}
+  - component: {fileID: 1122729719}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -378,6 +381,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1122729719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122729714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509fc45211eab25479e8e4ec7fb9d3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
 --- !u!1001 &1216716996
 PrefabInstance:
   m_ObjectHideFlags: 0
